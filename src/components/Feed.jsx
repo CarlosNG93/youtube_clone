@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import { SideBar, Videos } from './';
+import { fetchFromAPI } from '../utils/fetchFromAPI';
 
 
 const Feed = () => {
+
+  const [selectedCategory, setSelectedCategory] = useState('New');
+
+  useEffect(() => {
+	fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
+  }, [selectedCategory]);
+  
+
   return (
 	<Stack
 		sx={{ flexDirection: { sx: "column", md: "row" }}}
@@ -13,7 +22,10 @@ const Feed = () => {
 				  borderRight: '1px solid #3d3d3d',
 				  px: { sx: 0, md: 2 }}}
 		>
-			<SideBar />
+			<SideBar 
+				selectedCategory={selectedCategory}
+				setSelectedCategory={setSelectedCategory}
+			/>
 
 			<Typography
 				className='copyright'

@@ -2,9 +2,8 @@ import React from 'react';
 import { Stack } from '@mui/material';
 import { categories } from '../utils/constants';
 
-const selectedCategoy = 'New';
 
-const SideBar = () => (
+const SideBar = ({ selectedCategoy, setSelectedCategory }) => (
   
 	<Stack
 		direction="row"
